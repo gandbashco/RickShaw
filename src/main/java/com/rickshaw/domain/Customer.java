@@ -2,6 +2,7 @@ package com.rickshaw.domain;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -13,5 +14,7 @@ public class Customer {
 	private String email;
 	private String password;
 
-    private List<Order> orders;
+    private List<Order> orders = new ArrayList<>();
+
+
 }
