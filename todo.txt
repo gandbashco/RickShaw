@@ -1,0 +1,5 @@
+1. How do we make h2 file based instead of mem based? Do we need this? In other words every time the system starts up,
+do we want it to create the db afresh? Or retain operations from each run of the system? Create-drop vs. Update?
+2. Come up with tables (schema) for Rickshaw and write a create/populate sql script for h2.
+3. Once schema is in place, how do we handle entity relationships at the code level? They'll already exist in the db
+level via keys and maybe join tables.
