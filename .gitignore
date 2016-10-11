@@ -6,7 +6,7 @@ todo.txt
 mvnw*
 /.mvn/
 
-# Ignore Intellij IDEA configs
+# Ignore IntelliJ IDEA configs
 .idea/
 **/out
 **/*.iml
@@ -25,4 +25,3 @@ mvnw*
 **.classpath
 **.project
 **.prefs
-src/test/
