@@ -14,21 +14,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by Shahnaz on 10/16/2016.
- */
 @Repository
 public class CustomerDao {
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
- /*   @Autowired
-    public void setJdbcTemplate(NamedParameterJdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-*/
     @Autowired
-    public CustomerDao(NamedParameterJdbcTemplate jdbcTemplate) {
+    public void setJdbcTemplate(NamedParameterJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
