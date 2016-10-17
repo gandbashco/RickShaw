@@ -16,4 +16,15 @@ public class Customer {
 
     private List<Order> orders = new ArrayList<>();
 
+	@Override
+	public String toString() {
+		return "Customer{" +
+				"id=" + id +
+				", firstname='" + firstname + '\'' +
+				", lastname='" + lastname + '\'' +
+				", email='" + email + '\'' +
+				", password='" + password + '\'' +
+				", orders=" + orders +
+				'}';
+	}
 }
