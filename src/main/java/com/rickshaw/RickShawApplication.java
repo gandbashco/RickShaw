@@ -22,7 +22,7 @@ public class RickShawApplication {
 
 		CustomerDao customerDao = context.getBean(CustomerDao.class);
 
-		List<Customer> customers = customerDao.getCustomerByName();
+		List<Customer> customers = customerDao.getCustomerById(1);
 
 		for (Customer customer : customers) {
 			System.out.println(customer);

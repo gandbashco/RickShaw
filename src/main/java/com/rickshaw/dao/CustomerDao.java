@@ -24,24 +24,44 @@ public class CustomerDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Customer> getCustomerByName() {
+    public List<Customer> getCustomerByFirstName(String firstName) {
 
         MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("firstname", "Curly");
+        params.addValue("firstname", firstName);
 
         return jdbcTemplate.query("select * from customer where firstname = :firstname", params, new RowMapper<Customer>() {
 
             public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
-               Customer customer = new Customer();
-
-                customer.setId(rs.getInt("id"));
-                customer.setFirstname(rs.getString("firstname"));
-                customer.setLastname(rs.getString("lastname"));
-                customer.setEmail(rs.getString("email"));
-                customer.setPassword(rs.getString("password"));
-
-                return customer;
+                return createCustomerFromResultSet(rs);
             }
         });
     }
+
+    public List<Customer> getCustomerById(int id) {
+
+        MapSqlParameterSource params = new MapSqlParameterSource("id", id);
+
+        return jdbcTemplate.query("select * from customer where id = :id", params, new RowMapper<Customer>() {
+
+            public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return createCustomerFromResultSet(rs);
+            }
+        });
+    }
+
+    // Follow the offers model to see how to get all customers
+    // Delete a customer
+    // Create
+    // Update
+
+    private Customer createCustomerFromResultSet(ResultSet rs) throws SQLException {
+        Customer customer = new Customer();
+        customer.setId(rs.getInt("id"));
+        customer.setFirstname(rs.getString("firstname"));
+        customer.setLastname(rs.getString("lastname"));
+        customer.setEmail(rs.getString("email"));
+        customer.setPassword(rs.getString("password"));
+        return customer;
+    }
+
 }
