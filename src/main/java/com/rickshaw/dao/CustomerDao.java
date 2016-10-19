@@ -37,11 +37,11 @@ public class CustomerDao {
         });
     }
 
-    public List<Customer> getCustomerById(int id) {
+    public Customer getCustomerById(Long id) {
 
         MapSqlParameterSource params = new MapSqlParameterSource("id", id);
 
-        return jdbcTemplate.query("select * from customer where id = :id", params, new RowMapper<Customer>() {
+        return jdbcTemplate.queryForObject("select * from customer where id = :id", params, new RowMapper<Customer>() {
 
             public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
                 return createCustomerFromResultSet(rs);
