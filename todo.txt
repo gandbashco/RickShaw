@@ -3,3 +3,5 @@ do we want it to create the db afresh? Or retain operations from each run of the
 2. Come up with tables (schema) for Rickshaw and write a create/populate sql script for h2.
 3. Once schema is in place, how do we handle entity relationships at the code level? They'll already exist in the db
 level via keys and maybe join tables.
+4. Make methods in the dao so far return single object instead of lists.
+5. Try to use the controller -> service -> dao via hitting with URL instead of invoking dao functions directly from the main launch file.
