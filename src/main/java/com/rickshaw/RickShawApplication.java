@@ -22,7 +22,8 @@ public class RickShawApplication {
 
 		CustomerDao customerDao = context.getBean(CustomerDao.class);
 
-		System.out.println(customerDao.getCustomerById(1L));
+		customerDao.delete(4L);
+		System.out.println(customerDao.getAll());
 
 	}
 }

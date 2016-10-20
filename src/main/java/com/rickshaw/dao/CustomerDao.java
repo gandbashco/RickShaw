@@ -24,7 +24,7 @@ public class CustomerDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Customer> getCustomerByFirstName(String firstName) {
+    public List<Customer> getByFirstName(String firstName) {
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("firstname", firstName);
@@ -37,7 +37,7 @@ public class CustomerDao {
         });
     }
 
-    public Customer getCustomerById(Long id) {
+    public Customer getById(Long id) {
 
         MapSqlParameterSource params = new MapSqlParameterSource("id", id);
 
@@ -47,6 +47,21 @@ public class CustomerDao {
                 return createCustomerFromResultSet(rs);
             }
         });
+    }
+
+    public List<Customer> getAll() {
+
+        return jdbcTemplate.query("select * from customer", new RowMapper<Customer>() {
+
+            public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return createCustomerFromResultSet(rs);
+            }
+        });
+    }
+
+    public void delete(Long id) {
+        MapSqlParameterSource params = new MapSqlParameterSource("id", id);
+        jdbcTemplate.update("delete from customer where id = :id", params);
     }
 
     // Follow the offers model to see how to get all customers
