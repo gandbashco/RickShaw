@@ -1,3 +1,6 @@
+# This file
+.gitignore
+
 #Ignore Maven wrappers
 /mvnw.bat
 /mvnw
