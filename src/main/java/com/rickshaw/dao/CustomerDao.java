@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -25,7 +26,6 @@ public class CustomerDao {
     }
 
     public List<Customer> getByFirstName(String firstName) {
-
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("firstname", firstName);
 
@@ -38,7 +38,6 @@ public class CustomerDao {
     }
 
     public Customer getById(Long id) {
-
         MapSqlParameterSource params = new MapSqlParameterSource("id", id);
 
         return jdbcTemplate.queryForObject("select * from customer where id = :id", params, new RowMapper<Customer>() {
@@ -50,7 +49,6 @@ public class CustomerDao {
     }
 
     public List<Customer> getAll() {
-
         return jdbcTemplate.query("select * from customer", new RowMapper<Customer>() {
 
             public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -64,10 +62,27 @@ public class CustomerDao {
         jdbcTemplate.update("delete from customer where id = :id", params);
     }
 
-    // Follow the offers model to see how to get all customers
-    // Delete a customer
     // Create
+    public boolean create(Customer customer) {
+
+        BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(customer);
+        return jdbcTemplate.update("insert into customer (firstname, lastname, email, password) " +
+                                    "values (:firstname, :lastname, :email, :password)", params) == 1;
+        // How do we handle the orders belonging to this customer.
+    }
+
     // Update
+    public boolean update(Customer customer) {
+
+        BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(customer);
+        return jdbcTemplate.update("update customer set firstname=:firstname, " +
+                                                        "lastname=:lastname, " +
+                                                        "email=:email, " +
+                                                        "password=:password" +
+                                                        " where id=:id", params) == 1;
+        // But how do we update the customer's orders?
+    }
+
 
     private Customer createCustomerFromResultSet(ResultSet rs) throws SQLException {
         Customer customer = new Customer();
