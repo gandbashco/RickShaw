@@ -18,13 +18,9 @@ import java.util.List;
 @Repository
 public class CustomerDao {
 
-    private NamedParameterJdbcTemplate jdbcTemplate;
-
     @Autowired
-    public void setJdbcTemplate(NamedParameterJdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
+    private NamedParameterJdbcTemplate jdbcTemplate;
+    
     public List<Customer> getByFirstName(String firstName) {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("firstname", firstName);
