@@ -22,18 +22,18 @@ public class RickShawApplication {
 
 		CustomerDao customerDao = context.getBean(CustomerDao.class);
 
-		log.info("Before updating customer 4.");
+		log.info("Original customer list:");
 		printCustomers(customerDao);
 
-		Customer customer = customerDao.getById((4L));
+		Customer customer = new Customer();
 		customer.setFirstname("Shemp");
 		customer.setLastname("Stooge");
 		customer.setEmail("shemp@stooges.com");
 		customer.setPassword("heyGuys!");
 
-		customerDao.update(customer);
+		customerDao.create(customer);
 
-		log.info("Before updating customer 4.");
+		log.info("After additional customer was created.");
 		printCustomers(customerDao);
 	}
 
