@@ -1,6 +1,5 @@
 package com.rickshaw.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.ArrayList;

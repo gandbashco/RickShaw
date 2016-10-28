@@ -1,29 +1,28 @@
 package com.rickshaw.controller;
 
-import java.util.Hashtable;
-
+import com.rickshaw.service.CustomerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.rickshaw.domain.Customer;
-import com.rickshaw.service.CustomerService;
 
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
+
+	private static final Logger log = LoggerFactory.getLogger(CustomerController.class);
 	
 	@Autowired
 	CustomerService customerService;
-	
-	@RequestMapping("/all")
-	public Hashtable<String, Customer> getAll() {
-		return customerService.getAll();
-	}
 
-	@RequestMapping("{id}")
-	public Customer getCustomer(@PathVariable ("id") String id) {
-		return customerService.getCustomer(id);
-	}
+	/* Controller should be able to respond to requests for:
+	1. List all customers.
+	2. List one customer.
+	3. Create a customer.
+	4. Delete a customer.
+	5. Update a customer.
+	 */
+	
+
 }

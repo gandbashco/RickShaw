@@ -1,57 +1,24 @@
 package com.rickshaw.service;
 
-import java.util.Hashtable;
-
+import com.rickshaw.dao.CustomerDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.rickshaw.domain.Customer;
-
-import javax.annotation.PostConstruct;
 
 @Service
 public class CustomerService {
 
-	Hashtable<String, Customer> customers = new Hashtable<String, Customer>();
+    private static final Logger log = LoggerFactory.getLogger(CustomerService.class);
+
+	/* Service should delegate requests for requests for:
+    1. List all customers.
+	2. List one customer.
+	3. Create a customer.
+	4. Delete a customer.
+	5. Update a customer.
+	 */
 
 	@Autowired
-	OrderService orderService;
-
-	public CustomerService() {
-		Customer cust = new Customer();
-		cust.setId(1);
-		cust.setFirstname("Tom");
-		cust.setLastname("Jones");
-		customers.put("1", cust);
-
-		cust = new Customer();
-		cust.setId(2);
-		cust.setFirstname("Dick");
-		cust.setLastname("Smith");
-		customers.put("2", cust);
-
-		cust = new Customer();
-		cust.setId(3);
-		cust.setFirstname("Harry");
-		cust.setLastname("Arnold");
-		customers.put("3", cust);
-	}
-
-	@PostConstruct
-	private void addOrderToCustomer() {
-		customers.get("3").getOrders().add(orderService.getOrders().get("1"));
-	}
-
-	public Customer getCustomer(String id) {
-		if (customers.containsKey(id)) {
-			return customers.get(id);
-		}
-		else {
-			return null;
-		}
-	}
-
-	public Hashtable<String, Customer> getAll() {
-		return customers;
-	}
+    private CustomerDao customerDao;
 }

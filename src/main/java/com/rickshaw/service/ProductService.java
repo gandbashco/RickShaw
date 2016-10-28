@@ -1,11 +1,10 @@
 package com.rickshaw.service;
 
-import java.math.BigDecimal;
-import java.util.Hashtable;
-
+import com.rickshaw.domain.Product;
 import org.springframework.stereotype.Service;
 
-import com.rickshaw.domain.Product;
+import java.math.BigDecimal;
+import java.util.Hashtable;
 
 @Service
 public class ProductService {
