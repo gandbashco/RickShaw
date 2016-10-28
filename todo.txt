@@ -1,6 +1,5 @@
 * Try to use the controller -> service -> dao object chain of method calls instead of invoking dao functions directly
 from the main launch file as is being done right now.
-* Add create and update methods for customer dao to complete its JDBC functionality.
 * Add test cases for customer controller, service, and dao. Start with dao since that might be easiest.
 * Add initial UI.
 * Switch to JPA instead of JDBC
