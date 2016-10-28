@@ -64,7 +64,6 @@ public class CustomerDao {
 
     // Create
     public boolean create(Customer customer) {
-
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(customer);
         return jdbcTemplate.update("insert into customer (firstname, lastname, email, password) " +
                                     "values (:firstname, :lastname, :email, :password)", params) == 1;
@@ -73,7 +72,6 @@ public class CustomerDao {
 
     // Update
     public boolean update(Customer customer) {
-
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(customer);
         return jdbcTemplate.update("update customer set firstname=:firstname, " +
                                                         "lastname=:lastname, " +

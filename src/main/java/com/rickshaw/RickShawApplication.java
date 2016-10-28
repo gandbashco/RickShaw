@@ -22,8 +22,24 @@ public class RickShawApplication {
 
 		CustomerDao customerDao = context.getBean(CustomerDao.class);
 
-		customerDao.delete(4L);
-		System.out.println(customerDao.getAll());
+		log.info("Before updating customer 4.");
+		printCustomers(customerDao);
 
+		Customer customer = customerDao.getById((4L));
+		customer.setFirstname("Shemp");
+		customer.setLastname("Stooge");
+		customer.setEmail("shemp@stooges.com");
+		customer.setPassword("heyGuys!");
+
+		customerDao.update(customer);
+
+		log.info("Before updating customer 4.");
+		printCustomers(customerDao);
+	}
+
+	public static void printCustomers(CustomerDao customerDao) {
+		for (Customer c : customerDao.getAll()) {
+			log.info(c.toString());
+		}
 	}
 }
