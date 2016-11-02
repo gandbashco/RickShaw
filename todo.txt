@@ -3,3 +3,7 @@ from the main launch file as is being done right now.
 * Add test cases for customer controller, service, and dao. Start with dao since that might be easiest.
 * Add initial UI.
 * Switch to JPA instead of JDBC
+
+Fun stuff
+---------
+* See what app looks like in jvisualvm and jconsole.
