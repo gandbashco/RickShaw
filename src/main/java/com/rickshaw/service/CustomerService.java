@@ -24,4 +24,16 @@ public class CustomerService {
     public Customer getCustomerById(long id) {
         return customerDao.getById(id);
     }
+
+    public void createCustomer(Customer customer) {
+        customerDao.create(customer);
+    }
+
+    public void deleteCustomer(Long id) {
+        customerDao.delete(id);
+    }
+
+    public void updateCustomer(Customer customer) {
+        customerDao.update(customer);
+    }
 }
