@@ -9,14 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
-	/* Controller should be able to respond to requests for:
-	1. List all customers. DONE.
-	2. List one customer. DONE.
-	3. Create a customer.
-	4. Delete a customer.
-	5. Update a customer.
-	 */
-
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
