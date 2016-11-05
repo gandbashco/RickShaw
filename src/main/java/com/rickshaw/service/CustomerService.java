@@ -21,7 +21,7 @@ public class CustomerService {
         return customerDao.getAll();
     }
 
-    public Customer getCustomerById(long id) {
+    public Customer getCustomerById(Long id) {
         return customerDao.getById(id);
     }
 

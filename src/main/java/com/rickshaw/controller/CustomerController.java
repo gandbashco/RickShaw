@@ -16,7 +16,7 @@ public class CustomerController {
     private static final Logger log = LoggerFactory.getLogger(CustomerController.class);
 
     @Autowired
-    CustomerService customerService;
+    private CustomerService customerService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public Collection<Customer> getAllCustomers() {
@@ -24,12 +24,12 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Customer getCustomerById(@PathVariable("id") long id) {
+    public Customer getCustomerById(@PathVariable("id") Long id) {
         return customerService.getCustomerById(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteCustomer(@PathVariable("id") long id) {
+    public void deleteCustomer(@PathVariable("id") Long id) {
         customerService.deleteCustomer(id);
     }
 

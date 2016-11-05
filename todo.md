@@ -2,7 +2,9 @@ Todo
 ---
 * Add test cases for customer controller, service, and dao. Start with dao since that might be easiest.
 * Add initial UI.
-* Switch to JPA instead of JDBC. This involves switching to MySQL.
+* Switch to JPA instead of JDBC. This involves switching to MySQL. For which we should make
+another spring profile instead of removing the h2 profile because we might still
+want to maintain the h2 profile for dev/testing purposes.
 
 
 Questions
@@ -17,4 +19,5 @@ parameter, or as part of the posted JSON body?
 
 Fun stuff
 ---
-* See what app looks like in jvisualvm and jconsole.
+* See what app looks like in jvisualvm.
+* How do we get our objects to show up in jconsole, as they currently don't.
