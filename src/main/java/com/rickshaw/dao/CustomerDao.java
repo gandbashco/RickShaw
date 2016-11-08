@@ -35,6 +35,9 @@ public class CustomerDao {
     }
 
     public Customer getById(Long id) {
+        if (id < 1L) {
+            return null;
+        }
         MapSqlParameterSource params = new MapSqlParameterSource("id", id);
 
         return jdbcTemplate.queryForObject("select * from customer where id = :id", params, new RowMapper<Customer>() {
