@@ -1,10 +1,9 @@
 package com.rickshaw.dao;
 
 import com.rickshaw.domain.Customer;
-import org.apache.tomcat.jdbc.pool.DataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -18,12 +17,10 @@ import java.util.List;
 @Repository
 public class CustomerDao {
 
-    private NamedParameterJdbcTemplate jdbcTemplate;
+    private static final Logger log = LoggerFactory.getLogger(CustomerDao.class);
 
     @Autowired
-    public void setJdbcTemplate(NamedParameterJdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    private NamedParameterJdbcTemplate jdbcTemplate;
 
     public List<Customer> getByFirstName(String firstName) {
         MapSqlParameterSource params = new MapSqlParameterSource();
@@ -38,6 +35,9 @@ public class CustomerDao {
     }
 
     public Customer getById(Long id) {
+        if (id < 1L) {
+            return null;
+        }
         MapSqlParameterSource params = new MapSqlParameterSource("id", id);
 
         return jdbcTemplate.queryForObject("select * from customer where id = :id", params, new RowMapper<Customer>() {

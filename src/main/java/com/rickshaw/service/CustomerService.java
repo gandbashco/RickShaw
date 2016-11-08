@@ -1,57 +1,39 @@
 package com.rickshaw.service;
 
-import java.util.Hashtable;
-
+import com.rickshaw.dao.CustomerDao;
+import com.rickshaw.domain.Customer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rickshaw.domain.Customer;
-
-import javax.annotation.PostConstruct;
+import java.util.Collection;
 
 @Service
 public class CustomerService {
 
-	Hashtable<String, Customer> customers = new Hashtable<String, Customer>();
+    private static final Logger log = LoggerFactory.getLogger(CustomerService.class);
 
 	@Autowired
-	OrderService orderService;
+    private CustomerDao customerDao;
 
-	public CustomerService() {
-		Customer cust = new Customer();
-		cust.setId(1);
-		cust.setFirstname("Tom");
-		cust.setLastname("Jones");
-		customers.put("1", cust);
+    public Collection<Customer> getAll() {
+        return customerDao.getAll();
+    }
 
-		cust = new Customer();
-		cust.setId(2);
-		cust.setFirstname("Dick");
-		cust.setLastname("Smith");
-		customers.put("2", cust);
+    public Customer getCustomerById(Long id) {
+        return customerDao.getById(id);
+    }
 
-		cust = new Customer();
-		cust.setId(3);
-		cust.setFirstname("Harry");
-		cust.setLastname("Arnold");
-		customers.put("3", cust);
-	}
+    public void createCustomer(Customer customer) {
+        customerDao.create(customer);
+    }
 
-	@PostConstruct
-	private void addOrderToCustomer() {
-		customers.get("3").getOrders().add(orderService.getOrders().get("1"));
-	}
+    public void deleteCustomer(Long id) {
+        customerDao.delete(id);
+    }
 
-	public Customer getCustomer(String id) {
-		if (customers.containsKey(id)) {
-			return customers.get(id);
-		}
-		else {
-			return null;
-		}
-	}
-
-	public Hashtable<String, Customer> getAll() {
-		return customers;
-	}
+    public void updateCustomer(Customer customer) {
+        customerDao.update(customer);
+    }
 }
