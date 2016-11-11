@@ -15,4 +15,16 @@ public class Customer {
 	private String password;
 
     private List<Order> orders = new ArrayList<>();
+
+    public Customer() {
+
+    }
+
+	public Customer(String firstname, String lastname,
+                    String email, String password) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+    }
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 
 @Repository
@@ -35,9 +36,6 @@ public class CustomerDao {
     }
 
     public Customer getById(Long id) {
-        if (id < 1L) {
-            return null;
-        }
         MapSqlParameterSource params = new MapSqlParameterSource("id", id);
 
         return jdbcTemplate.queryForObject("select * from customer where id = :id", params, new RowMapper<Customer>() {
@@ -48,7 +46,7 @@ public class CustomerDao {
         });
     }
 
-    public List<Customer> getAll() {
+    public Collection<Customer> getAll() {
         return jdbcTemplate.query("select * from customer", new RowMapper<Customer>() {
 
             public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
