@@ -15,16 +15,32 @@ public class Customer {
 	private long id;
 
 	@NotNull
-	private String firstname;
+	private String firstName;
 
 	@NotNull
-	private String lastname;
+	private String lastName;
 
 	@NotNull
 	private String email;
 
 	@NotNull
 	private String password;
+
+    /*
+    todo: Are these constructors below really necessary considering the fact we may not be using Lombok properly?
+     */
+	public Customer() {
+
+	}
+
+
+    public Customer(String firstname, String lastname,
+                    String email, String password) {
+        this.firstName = firstname;
+        this.lastName = lastname;
+        this.email = email;
+        this.password = password;
+    }
 
 	// private List<Order> orders = new ArrayList<>();
 }

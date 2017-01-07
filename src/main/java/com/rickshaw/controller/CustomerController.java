@@ -19,32 +19,32 @@ public class CustomerController {
     private CustomerService customerService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public Collection<Customer> getAllCustomers() {
+    public Iterable<Customer> getAllCustomers() {
         return customerService.getAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Customer getCustomerById(@PathVariable("id") Long id) {
-        return customerService.getCustomerById(id);
+        return null; //customerService.getCustomerById(id);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteCustomer(@PathVariable("id") Long id) {
-        customerService.deleteCustomer(id);
-    }
+//    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+//    public void deleteCustomer(@PathVariable("id") Long id) {
+//        customerService.deleteCustomer(id);
+//    }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public @ResponseBody Customer createCustomer(@RequestBody Customer customer) {
         log.debug("Converting JSON values to Customer object: " + customer.toString());
-        customerService.createCustomer(customer);
-        return customer;
+        //customerService.createCustomer(customer);
+        return null; //customer;
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public @ResponseBody Customer updateCustomer(@RequestBody Customer customer) {
         log.debug("Converting JSON values to Customer object: " + customer.toString());
-        customerService.updateCustomer(customer);
-        return customer;
+        //customerService.updateCustomer(customer);
+        return null; //customer;
     }
 
 }

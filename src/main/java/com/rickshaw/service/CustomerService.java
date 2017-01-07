@@ -1,6 +1,6 @@
 package com.rickshaw.service;
 
-import com.rickshaw.dao.CustomerDao;
+import com.rickshaw.repository.CustomerRepository;
 import com.rickshaw.domain.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,25 +15,22 @@ public class CustomerService {
     private static final Logger log = LoggerFactory.getLogger(CustomerService.class);
 
 	@Autowired
-    private CustomerDao customerDao;
+    private CustomerRepository customerRepository;
 
-    public Collection<Customer> getAll() {
-        return customerDao.getAll();
+    public Iterable<Customer> getAll() {
+        return customerRepository.findAll();
     }
 
     public Customer getCustomerById(Long id) {
-        return customerDao.getById(id);
+        return customerRepository.findOne(id);
     }
 
     public void createCustomer(Customer customer) {
-        customerDao.create(customer);
+        customerRepository.save(customer);
     }
 
     public void deleteCustomer(Long id) {
-        customerDao.delete(id);
+        customerRepository.delete(id);
     }
 
-    public void updateCustomer(Customer customer) {
-        customerDao.update(customer);
-    }
 }
