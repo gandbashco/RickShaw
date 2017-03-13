@@ -7,8 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
@@ -25,26 +23,24 @@ public class CustomerController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Customer getCustomerById(@PathVariable("id") Long id) {
-        return null; //customerService.getCustomerById(id);
+        return customerService.getCustomerById(id);
     }
 
-//    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-//    public void deleteCustomer(@PathVariable("id") Long id) {
-//        customerService.deleteCustomer(id);
-//    }
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteCustomer(@PathVariable("id") Long id) {
+        customerService.deleteCustomer(id);
+    }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public @ResponseBody Customer createCustomer(@RequestBody Customer customer) {
         log.debug("Converting JSON values to Customer object: " + customer.toString());
-        //customerService.createCustomer(customer);
-        return null; //customer;
+        customerService.createCustomer(customer);
+        return customer;
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public @ResponseBody Customer updateCustomer(@RequestBody Customer customer) {
-        log.debug("Converting JSON values to Customer object: " + customer.toString());
-        //customerService.updateCustomer(customer);
-        return null; //customer;
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+    public void updateCustomer( @PathVariable("id") String id, @RequestBody Customer customer) throws Exception {
+        customerService.updateCustomer(Long.parseLong(id), customer);
     }
 
 }

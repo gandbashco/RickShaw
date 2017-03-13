@@ -33,7 +33,6 @@ public class Customer {
 
 	}
 
-
     public Customer(String firstname, String lastname,
                     String email, String password) {
         this.firstName = firstname;
@@ -41,6 +40,10 @@ public class Customer {
         this.email = email;
         this.password = password;
     }
+
+	public long getId() {
+		return id;
+	}
 
 	// private List<Order> orders = new ArrayList<>();
 }

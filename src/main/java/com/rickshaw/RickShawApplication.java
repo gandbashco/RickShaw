@@ -28,6 +28,8 @@ public class RickShawApplication {
 			// save a couple of customers
 			customerRepository.save(new Customer("Jack", "Bauer", "jbauer@springboot.com", "secret"));
 			customerRepository.save(new Customer("John", "Doe", "jdoe@springboot.com", "secret2"));
+			customerRepository.save(new Customer("Sultan", "Rahi", "srahi@punjabiTV.com", "raaz"));
+			customerRepository.save(new Customer("Curly", "Stooge", "cstooge@3stooges.com", "soitenly"));
             Iterable<Customer> customers = customerService.getAll();
             log.info(customers.toString());
 		};
