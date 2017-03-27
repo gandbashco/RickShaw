@@ -12,8 +12,9 @@ import java.util.Date;
 
 @Data
 /*
-The next two annotation avoid a stack overflow error which is caused by Lombok's @Data annotation.
- */
+The next two annotations avoid a stack overflow error which is caused by Lombok's @Data annotation. This is caused
+by toString and hashCode methods from both classes calling each other recursively.
+*/
 @ToString(exclude = "customer")
 @EqualsAndHashCode(exclude = "customer")
 @Entity
@@ -32,7 +33,8 @@ public class Order {
 
     /*
     This annotation is helpful because without it, fetching a customer, which results in fetching their
-    orders, will result in fetching the customer back again and hence infinite recursion.
+    orders, will result in fetching the customer back again and hence infinite recursion due to the back reference
+    to the owning customer in this class.
      */
     @JsonIgnore
     @ManyToOne
