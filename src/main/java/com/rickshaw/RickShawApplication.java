@@ -1,6 +1,7 @@
 package com.rickshaw;
 
 import com.rickshaw.domain.Customer;
+import com.rickshaw.domain.Order;
 import com.rickshaw.repository.CustomerRepository;
 import com.rickshaw.service.CustomerService;
 import org.slf4j.Logger;
@@ -10,8 +11,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.Collection;
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.*;
 
 @SpringBootApplication
 public class RickShawApplication {
@@ -26,12 +27,13 @@ public class RickShawApplication {
 	public CommandLineRunner demo(CustomerRepository customerRepository, CustomerService customerService) {
 		return (args) -> {
 			// save a couple of customers
-			customerRepository.save(new Customer("Jack", "Bauer", "jbauer@springboot.com", "secret"));
-			customerRepository.save(new Customer("John", "Doe", "jdoe@springboot.com", "secret2"));
-			customerRepository.save(new Customer("Sultan", "Rahi", "srahi@punjabiTV.com", "raaz"));
-			customerRepository.save(new Customer("Curly", "Stooge", "cstooge@3stooges.com", "soitenly"));
-            Iterable<Customer> customers = customerService.getAll();
-            log.info(customers.toString());
+            Order o = new Order();
+			o.setDateCreated(new Date());
+			o.setTotal((BigDecimal.valueOf(22.34)));
+            Customer c = new Customer("Jack", "Bauer", "jbauer@springboot.com", "secret");
+            c.addOrder(o);
+            System.out.println("Customer: " + c);
+            customerRepository.save(c);
 		};
 	}
 }

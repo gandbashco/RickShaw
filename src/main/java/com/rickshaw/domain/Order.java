@@ -1,6 +1,8 @@
 package com.rickshaw.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -8,6 +10,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
+@ToString(exclude = "customer")
+@EqualsAndHashCode(exclude = "customer")
 @Entity
 @Table(name = "`order`")
 public class Order {
@@ -21,4 +25,12 @@ public class Order {
 
     @NotNull
     private BigDecimal total;
+
+    @ManyToOne
+    @JoinColumn(name = "CUSTOMER_ID")
+    private Customer customer;
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 }
