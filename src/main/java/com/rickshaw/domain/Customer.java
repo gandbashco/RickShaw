@@ -2,6 +2,7 @@ package com.rickshaw.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -9,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "customer")
 public class Customer {
@@ -31,12 +33,6 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Order> orders = new HashSet<>();
-
-    /*
-    todo: Are these constructors below really necessary considering the fact we may not be using Lombok properly?
-     */
-    public Customer() {
-    }
 
     public Customer(String firstname, String lastname,
                     String email, String password) {
