@@ -17,6 +17,7 @@ be seen as a response in something like Postman while testing?
 * For updating an existing customer via Postman, is it better practice to provide the target customer's id as a url
 parameter, or as part of the posted JSON body?
 * More generally, what is the difference between using CrudRepository interface methods vs. using an entity manager?
+* What should the response be when asking for the orders of a customer id that doesn't exist?
 
 Fun stuff
 ---

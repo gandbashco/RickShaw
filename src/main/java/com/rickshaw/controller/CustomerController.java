@@ -1,11 +1,15 @@
 package com.rickshaw.controller;
 
 import com.rickshaw.domain.Customer;
+import com.rickshaw.domain.Order;
 import com.rickshaw.service.CustomerService;
+import com.rickshaw.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @RestController
 @RequestMapping("/customers")
@@ -16,6 +20,9 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
+    private OrderService orderService;
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     public Iterable<Customer> getAllCustomers() {
         return customerService.getAll();
@@ -24,6 +31,11 @@ public class CustomerController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Customer getCustomerById(@PathVariable("id") Long id) {
         return customerService.getCustomerById(id);
+    }
+
+    @RequestMapping(value = "/{id}/orders", method = RequestMethod.GET)
+    public Set<Order> getOrdersByCustomer(@PathVariable("id") Long id) {
+        return orderService.getOrdersByCustomer(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

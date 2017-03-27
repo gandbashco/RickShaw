@@ -1,5 +1,6 @@
 package com.rickshaw.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -10,6 +11,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
+/*
+The next two annotation avoid a stack overflow error which is caused by Lombok's @Data annotation.
+ */
 @ToString(exclude = "customer")
 @EqualsAndHashCode(exclude = "customer")
 @Entity
@@ -26,6 +30,11 @@ public class Order {
     @NotNull
     private BigDecimal total;
 
+    /*
+    This annotation is helpful because without it, fetching a customer, which results in fetching their
+    orders, will result in fetching the customer back again and hence infinite recursion.
+     */
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
