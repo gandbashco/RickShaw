@@ -19,9 +19,16 @@ parameter, or as part of the posted JSON body?
 sense because that is the same as an existing customer that doesn't have any orders. Should an exception be used here?
 * Need to write unit tests for services working so far.
 * How can Swagger be used to document the API for Rickshaw?
+* Domain classes should obviously be commented using Javadoc but what about repositories, since
+they implement the CrudRepository interface, do they inherit those comments? Do I need to comment 
+any methods I define therein like as in OrderRepository.findByCustomer?
+* Returning List vs Set in CustomerService, which is better? More of a good practice?
+* When you bring up the spring context or get autowire a repository in a unit test, does it become an
+integration test? If so, where do we place integration tests as in what files?
+* How do we bootstrap the database via jpa in a Spring Boot project?
 
 Fun stuff
 ---
 * See what app looks like in jvisualvm.
 * How do we get our objects to show up in jconsole, as they currently don't.
-* Experiment with Spring Boot's actuator to monitor the Rickshaw applicaiton.
+* Experiment with Spring Boot's actuator to monitor the Rickshaw application.
