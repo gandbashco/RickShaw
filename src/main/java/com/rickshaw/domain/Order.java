@@ -10,6 +10,12 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+* A class representing an order. An order can be placed by a {@link Customer}.
+*
+* @author  Mudassar "Moe" Bashir
+* @see com.rickshaw.domain.Customer
+*/
 @Data
 /*
 The next two annotations avoid a stack overflow error which is caused by Lombok's @Data annotation. This is caused
@@ -31,6 +37,9 @@ public class Order {
     @NotNull
     private BigDecimal total;
 
+    /**
+     * The customer which owns this order.
+     */
     /*
     This annotation is helpful because without it, fetching a customer, which results in fetching their
     orders, will result in fetching the customer back again and hence infinite recursion due to the back reference
@@ -41,7 +50,4 @@ public class Order {
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 }
