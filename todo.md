@@ -1,7 +1,5 @@
 Todo
 ---
-* Finish hibernate work on customer repository, start order repository and finish the customer and order relationship.
-* Fix the controller and service code to work with the new repositories as they currently work with the old DAOs.
 * Add test cases for customer controller, service, and repositories. Start with customer repository since that might be easiest.
 * How do we bootstrap the database via jpa in a Spring Boot project?
 
@@ -17,7 +15,6 @@ parameter, or as part of the posted JSON body?
 * More generally, what is the difference between using CrudRepository interface methods vs. using an entity manager?
 * What should the response be when asking for the orders of a customer id that doesn't exist? Empty set doesn't make
 sense because that is the same as an existing customer that doesn't have any orders. Should an exception be used here?
-* Need to write unit tests for services working so far.
 * How can Swagger be used to document the API for Rickshaw?
 * Domain classes should obviously be commented using Javadoc but what about repositories, since
 they implement the CrudRepository interface, do they inherit those comments? Do I need to comment 
@@ -26,6 +23,8 @@ any methods I define therein like as in OrderRepository.findByCustomer?
 * When you bring up the spring context or get autowire a repository in a unit test, does it become an
 integration test? If so, where do we place integration tests as in what files?
 * How do we bootstrap the database via jpa in a Spring Boot project?
+* Should orders have their own controller or should I access them via the customer controller? Which is
+better design?
 
 Fun stuff
 ---
