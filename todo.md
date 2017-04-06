@@ -2,6 +2,7 @@ Todo
 ---
 * Add test cases for customer controller, service, and repositories. Start with customer repository since that might be easiest.
 * How do we bootstrap the database via jpa in a Spring Boot project?
+* Create some products (ten to fifteen) in the database. These will be the actual Rickshaw parts that a customer can order.
 
 Questions
 ---
