@@ -9,7 +9,8 @@ Questions
 as well as textual responses to indicate success or failure of the requested operations? For example should the delete
 method in the customer dao return a boolean to indicate successful deletion of the requested record? And if so, should
 this be propagated towards the presentation layer via the service and the controller's calling methods and hence
-be seen as a response in something like Postman while testing?
+be seen as a response in something like Postman while testing? Also in case of errors what is a good design for exception
+indication to the front end.
 * For updating an existing customer via Postman, is it better practice to provide the target customer's id as a url
 parameter, or as part of the posted JSON body?
 * More generally, what is the difference between using CrudRepository interface methods vs. using an entity manager?
@@ -25,6 +26,7 @@ integration test? If so, where do we place integration tests as in what files?
 * How do we bootstrap the database via jpa in a Spring Boot project?
 * Should orders have their own controller or should I access them via the customer controller? Which is
 better design?
+* List vs collection what to return?
 
 Fun stuff
 ---

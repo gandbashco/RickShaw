@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.Date;
 
 @SpringBootApplication
 public class RickShawApplication {
