@@ -13,6 +13,7 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
     List<Customer> findByLastName(String lastName);
 
+    // todo: return only single customer or do partial e-mail match.
     List<Customer> findByEmail(String lastName);
 
 }
